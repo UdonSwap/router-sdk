@@ -1,8 +1,8 @@
 import invariant from 'tiny-invariant'
 
-import { Currency, Price, Token } from 'udonswap-sdk-core'
-import { Pool } from 'udonswap-v3-sdk'
-import { Pair } from 'udonswap-v2'
+import { Currency, Price, Token } from 'udonswap-core'
+import { Pool } from 'udonswap-v3'
+import { Pair } from 'udonswap-v2-sdk'
 
 type TPool = Pair | Pool
 

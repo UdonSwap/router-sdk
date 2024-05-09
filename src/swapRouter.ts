@@ -1,7 +1,7 @@
 import { Interface } from '@ethersproject/abi'
-import { Currency, CurrencyAmount, Percent, TradeType, validateAndParseAddress, WETH9 } from 'udonswap-sdk-core'
+import { Currency, CurrencyAmount, Percent, TradeType, validateAndParseAddress, WETH9 } from 'udonswap-core'
 import { abi } from '@uniswap/swap-router-contracts/artifacts/contracts/interfaces/ISwapRouter02.sol/ISwapRouter02.json'
-import { Trade as V2Trade } from 'udonswap-v2'
+import { Trade as V2Trade } from 'udonswap-v2-sdk'
 import {
   encodeRouteToPath,
   FeeOptions,
@@ -13,7 +13,7 @@ import {
   SelfPermit,
   toHex,
   Trade as V3Trade,
-} from 'udonswap-v3-sdk'
+} from 'udonswap-v3'
 import invariant from 'tiny-invariant'
 import JSBI from 'jsbi'
 import { ADDRESS_THIS, MSG_SENDER } from './constants'

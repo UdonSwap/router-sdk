@@ -1,6 +1,6 @@
-import { Currency, Token } from 'udonswap-sdk-core'
-import { Pair } from 'udonswap-v2'
-import { Pool } from 'udonswap-v3-sdk'
+import { Currency, Token } from 'udonswap-core'
+import { Pair } from 'udonswap-v2-sdk'
+import { Pool } from 'udonswap-v3'
 import { MixedRouteSDK } from '../entities/mixedRoute/route'
 
 /**

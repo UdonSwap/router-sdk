@@ -1,12 +1,12 @@
-import { Ether, Token, WETH9, CurrencyAmount } from 'udonswap-sdk-core'
-import { Route as V3RouteSDK, Pool, FeeAmount, TickMath, encodeSqrtRatioX96 } from 'udonswap-v3-sdk'
+import { ETHER, Token, WETH9, CurrencyAmount } from 'udonswap-core'
+import { Route as V3RouteSDK, Pool, FeeAmount, TickMath, encodeSqrtRatioX96 } from 'udonswap-v3'
 import { RouteV3 } from './route'
 import { Protocol } from './protocol'
-import { Route as V2RouteSDK, Pair } from 'udonswap-v2'
+import { Route as V2RouteSDK, Pair } from 'udonswap-v2-sdk'
 import { RouteV2 } from './route'
 
 describe('RouteV3', () => {
-  const ETHER = Ether.onChain(1)
+  const ETH = ETHER.onChain(1)
   const token0 = new Token(1, '0x0000000000000000000000000000000000000001', 18, 't0')
   const token1 = new Token(1, '0x0000000000000000000000000000000000000002', 18, 't1')
   const token2 = new Token(1, '0x0000000000000000000000000000000000000003', 18, 't2')
@@ -54,19 +54,19 @@ describe('RouteV3', () => {
   })
 
   it('supports ether input', () => {
-    const routeOriginal = new V3RouteSDK([pool_0_weth], ETHER, token0)
+    const routeOriginal = new V3RouteSDK([pool_0_weth], ETH, token0)
     const route = new RouteV3(routeOriginal)
     expect(route.pools).toEqual([pool_0_weth])
-    expect(route.input).toEqual(ETHER)
+    expect(route.input).toEqual(ETH)
     expect(route.output).toEqual(token0)
   })
 
   it('supports ether output', () => {
-    const routeOriginal = new V3RouteSDK([pool_0_weth], token0, ETHER)
+    const routeOriginal = new V3RouteSDK([pool_0_weth], token0, ETH)
     const route = new RouteV3(routeOriginal)
     expect(route.pools).toEqual([pool_0_weth])
     expect(route.input).toEqual(token0)
-    expect(route.output).toEqual(ETHER)
+    expect(route.output).toEqual(ETH)
   })
 
   describe('#midPrice', () => {
@@ -146,10 +146,10 @@ describe('RouteV3', () => {
     })
 
     it('correct for ether -> 0', () => {
-      const routeOriginal = new V3RouteSDK([pool_0_weth], ETHER, token0)
+      const routeOriginal = new V3RouteSDK([pool_0_weth], ETH, token0)
       const price = new RouteV3(routeOriginal).midPrice
       expect(price.toFixed(4)).toEqual('0.3333')
-      expect(price.baseCurrency.equals(ETHER)).toEqual(true)
+      expect(price.baseCurrency.equals(ETH)).toEqual(true)
       expect(price.quoteCurrency.equals(token0)).toEqual(true)
     })
 
@@ -161,25 +161,25 @@ describe('RouteV3', () => {
     })
 
     it('correct for ether -> 0 -> 1 -> weth', () => {
-      const routeOriginal = new V3RouteSDK([pool_0_weth, pool_0_1, pool_1_weth], ETHER, weth)
+      const routeOriginal = new V3RouteSDK([pool_0_weth, pool_0_1, pool_1_weth], ETH, weth)
       const price = new RouteV3(routeOriginal).midPrice
       expect(price.toSignificant(4)).toEqual('0.009524')
-      expect(price.baseCurrency.equals(ETHER)).toEqual(true)
+      expect(price.baseCurrency.equals(ETH)).toEqual(true)
       expect(price.quoteCurrency.equals(weth)).toEqual(true)
     })
 
     it('correct for weth -> 0 -> 1 -> ether', () => {
-      const routeOriginal = new V3RouteSDK([pool_0_weth, pool_0_1, pool_1_weth], weth, ETHER)
+      const routeOriginal = new V3RouteSDK([pool_0_weth, pool_0_1, pool_1_weth], weth, ETH)
       const price = new RouteV3(routeOriginal).midPrice
       expect(price.toSignificant(4)).toEqual('0.009524')
       expect(price.baseCurrency.equals(weth)).toEqual(true)
-      expect(price.quoteCurrency.equals(ETHER)).toEqual(true)
+      expect(price.quoteCurrency.equals(ETH)).toEqual(true)
     })
   })
 })
 
 describe('RouteV2', () => {
-  const ETHER = Ether.onChain(1)
+  const ETH = ETHER.onChain(1)
   const token0 = new Token(1, '0x0000000000000000000000000000000000000001', 18, 't0')
   const token1 = new Token(1, '0x0000000000000000000000000000000000000002', 18, 't1')
   const weth = WETH9[1]
@@ -223,18 +223,18 @@ describe('RouteV2', () => {
   })
 
   it('supports ether input', () => {
-    const routeOriginal = new V2RouteSDK([pair_0_weth], ETHER, token0)
+    const routeOriginal = new V2RouteSDK([pair_0_weth], ETH, token0)
     const route = new RouteV2(routeOriginal)
     expect(route.pairs).toEqual([pair_0_weth])
-    expect(route.input).toEqual(ETHER)
+    expect(route.input).toEqual(ETH)
     expect(route.output).toEqual(token0)
   })
 
   it('supports ether output', () => {
-    const routeOriginal = new V2RouteSDK([pair_0_weth], token0, ETHER)
+    const routeOriginal = new V2RouteSDK([pair_0_weth], token0, ETH)
     const route = new RouteV2(routeOriginal)
     expect(route.pairs).toEqual([pair_0_weth])
     expect(route.input).toEqual(token0)
-    expect(route.output).toEqual(ETHER)
+    expect(route.output).toEqual(ETH)
   })
 })

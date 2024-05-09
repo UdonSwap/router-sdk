@@ -1,14 +1,14 @@
-import { Currency, Fraction, Percent, Price, sortedInsert, CurrencyAmount, TradeType, Token } from 'udonswap-sdk-core'
-import { Pair } from 'udonswap-v2'
-import { BestTradeOptions, Pool } from 'udonswap-v3-sdk'
+import { Currency, Fraction, Percent, Price, sortedInsert, CurrencyAmount, TradeType, Token } from 'udonswap-core'
+import { Pair } from 'udonswap-v2-sdk'
+import { BestTradeOptions, Pool } from 'udonswap-v3'
 import invariant from 'tiny-invariant'
 import { ONE, ZERO } from '../../constants'
 import { MixedRouteSDK } from './route'
 
 /**
  * Trades comparator, an extension of the input output comparator that also considers other dimensions of the trade in ranking them
- * @template TInput The input token, either Ether or an ERC-20
- * @template TOutput The output token, either Ether or an ERC-20
+ * @template TInput The input token, either ETHER or an ERC-20
+ * @template TOutput The output token, either ETHER or an ERC-20
  * @template TTradeType The trade type, either exact input or exact output
  * @param a The first trade to compare
  * @param b The second trade to compare
@@ -52,9 +52,9 @@ export function tradeComparator<TInput extends Currency, TOutput extends Currenc
  *
  * Does not account for slippage, i.e., changes in price environment that can occur between
  * the time the trade is submitted and when it is executed.
- * @notice This class is functionally the same as the `Trade` class in the `udonswap-v3-sdk` package, aside from typing and some input validation.
- * @template TInput The input token, either Ether or an ERC-20
- * @template TOutput The output token, either Ether or an ERC-20
+ * @notice This class is functionally the same as the `Trade` class in the `udonswap-v3` package, aside from typing and some input validation.
+ * @template TInput The input token, either ETHER or an ERC-20
+ * @template TOutput The output token, either ETHER or an ERC-20
  * @template TTradeType The trade type, either exact input or exact output
  */
 export class MixedRouteTrade<TInput extends Currency, TOutput extends Currency, TTradeType extends TradeType> {
@@ -180,8 +180,8 @@ export class MixedRouteTrade<TInput extends Currency, TOutput extends Currency, 
 
   /**
    * Constructs a trade by simulating swaps through the given route
-   * @template TInput The input token, either Ether or an ERC-20.
-   * @template TOutput The output token, either Ether or an ERC-20.
+   * @template TInput The input token, either ETHER or an ERC-20.
+   * @template TOutput The output token, either ETHER or an ERC-20.
    * @template TTradeType The type of the trade, either exact in or exact out.
    * @param route route to swap through
    * @param amount the amount specified, either input or output, depending on tradeType
@@ -222,8 +222,8 @@ export class MixedRouteTrade<TInput extends Currency, TOutput extends Currency, 
   /**
    * Constructs a trade from routes by simulating swaps
    *
-   * @template TInput The input token, either Ether or an ERC-20.
-   * @template TOutput The output token, either Ether or an ERC-20.
+   * @template TInput The input token, either ETHER or an ERC-20.
+   * @template TOutput The output token, either ETHER or an ERC-20.
    * @template TTradeType The type of the trade, either exact in or exact out.
    * @param routes the routes to swap through and how much of the amount should be routed through each
    * @param tradeType whether the trade is an exact input or exact output swap
@@ -277,8 +277,8 @@ export class MixedRouteTrade<TInput extends Currency, TOutput extends Currency, 
   /**
    * Creates a trade without computing the result of swapping through the route. Useful when you have simulated the trade
    * elsewhere and do not have any tick data
-   * @template TInput The input token, either Ether or an ERC-20
-   * @template TOutput The output token, either Ether or an ERC-20
+   * @template TInput The input token, either ETHER or an ERC-20
+   * @template TOutput The output token, either ETHER or an ERC-20
    * @template TTradeType The type of the trade, either exact in or exact out
    * @param constructorArguments The arguments passed to the trade constructor
    * @returns The unchecked trade
@@ -308,8 +308,8 @@ export class MixedRouteTrade<TInput extends Currency, TOutput extends Currency, 
   /**
    * Creates a trade without computing the result of swapping through the routes. Useful when you have simulated the trade
    * elsewhere and do not have any tick data
-   * @template TInput The input token, either Ether or an ERC-20
-   * @template TOutput The output token, either Ether or an ERC-20
+   * @template TInput The input token, either ETHER or an ERC-20
+   * @template TOutput The output token, either ETHER or an ERC-20
    * @template TTradeType The type of the trade, either exact in or exact out
    * @param constructorArguments The arguments passed to the trade constructor
    * @returns The unchecked trade

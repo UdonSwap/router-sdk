@@ -16,14 +16,14 @@ import { Pair, Route as V2RouteSDK } from 'udonswap-v2-sdk'
 import { MixedRouteSDK } from './mixedRoute/route'
 
 describe('Trade', () => {
-  const ETH = ETHER.onChain(1)
-  const weth = WETH9[1]
-  const token0 = new Token(1, '0x0000000000000000000000000000000000000001', 18, 't0', 'token0')
-  const token1 = new Token(1, '0x0000000000000000000000000000000000000002', 18, 't1', 'token1')
-  const token2 = new Token(1, '0x0000000000000000000000000000000000000003', 18, 't2', 'token2')
-  const token3 = new Token(1, '0x0000000000000000000000000000000000000004', 18, 't3', 'token3')
+  const ETH = ETHER.onChain(919)
+  const weth = WETH9[919]
+  const token0 = new Token(919, '0x0000000000000000000000000000000000000001', 18, 't0', 'token0')
+  const token1 = new Token(919, '0x0000000000000000000000000000000000000002', 18, 't1', 'token1')
+  const token2 = new Token(919, '0x0000000000000000000000000000000000000003', 18, 't2', 'token2')
+  const token3 = new Token(919, '0x0000000000000000000000000000000000000004', 18, 't3', 'token3')
   const token4WithTax = new Token(
-    1,
+    919,
     '0x0000000000000000000000000000000000000005',
     18,
     't4',
@@ -33,7 +33,7 @@ describe('Trade', () => {
     BigNumber.from(100)
   )
   const token5WithTax = new Token(
-    1,
+    919,
     '0x0000000000000000000000000000000000000005',
     18,
     't5',

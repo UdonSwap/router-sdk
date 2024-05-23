@@ -6,11 +6,11 @@ import { MixedRouteSDK } from './route'
 import { MixedRouteTrade } from './trade'
 
 describe('MixedRouteTrade', () => {
-  const ETH = ETHER.onChain(1)
-  const token0 = new Token(1, '0x0000000000000000000000000000000000000001', 18, 't0', 'token0')
-  const token1 = new Token(1, '0x0000000000000000000000000000000000000002', 18, 't1', 'token1')
-  const token2 = new Token(1, '0x0000000000000000000000000000000000000003', 18, 't2', 'token2')
-  const token3 = new Token(1, '0x0000000000000000000000000000000000000004', 18, 't3', 'token3')
+  const ETH = ETHER.onChain(919)
+  const token0 = new Token(919, '0x0000000000000000000000000000000000000001', 18, 't0', 'token0')
+  const token1 = new Token(919, '0x0000000000000000000000000000000000000002', 18, 't1', 'token1')
+  const token2 = new Token(919, '0x0000000000000000000000000000000000000003', 18, 't2', 'token2')
+  const token3 = new Token(919, '0x0000000000000000000000000000000000000004', 18, 't3', 'token3')
 
   function v2StylePool(
     reserve0: CurrencyAmount<Token>,
@@ -63,17 +63,17 @@ describe('MixedRouteTrade', () => {
   )
 
   const pool_weth_0 = v2StylePool(
-    CurrencyAmount.fromRawAmount(WETH9[1], JSBI.BigInt(100000)),
+    CurrencyAmount.fromRawAmount(WETH9[919], JSBI.BigInt(100000)),
     CurrencyAmount.fromRawAmount(token0, JSBI.BigInt(100000))
   )
 
   const pool_weth_1 = v2StylePool(
-    CurrencyAmount.fromRawAmount(WETH9[1], JSBI.BigInt(100000)),
+    CurrencyAmount.fromRawAmount(WETH9[919], JSBI.BigInt(100000)),
     CurrencyAmount.fromRawAmount(token1, JSBI.BigInt(100000))
   )
 
   const pool_weth_2 = v2StylePool(
-    CurrencyAmount.fromRawAmount(WETH9[1], JSBI.BigInt(100000)),
+    CurrencyAmount.fromRawAmount(WETH9[919], JSBI.BigInt(100000)),
     CurrencyAmount.fromRawAmount(token2, JSBI.BigInt(100000))
   )
 
@@ -99,7 +99,7 @@ describe('MixedRouteTrade', () => {
   )
 
   const pair_weth_0 = new Pair(
-    CurrencyAmount.fromRawAmount(WETH9[1], JSBI.BigInt(1000)),
+    CurrencyAmount.fromRawAmount(WETH9[919], JSBI.BigInt(1000)),
     CurrencyAmount.fromRawAmount(token0, JSBI.BigInt(1000))
   )
 
@@ -114,7 +114,7 @@ describe('MixedRouteTrade', () => {
       it('can be constructed with ETHER as input', async () => {
         const trade = await MixedRouteTrade.fromRoute(
           new MixedRouteSDK([pool_weth_0], ETH, token0),
-          CurrencyAmount.fromRawAmount(ETHER.onChain(1), JSBI.BigInt(10000)),
+          CurrencyAmount.fromRawAmount(ETHER.onChain(919), JSBI.BigInt(10000)),
           TradeType.EXACT_INPUT
         )
         expect(trade.inputAmount.currency).toEqual(ETH)
@@ -146,7 +146,7 @@ describe('MixedRouteTrade', () => {
         const trade = await MixedRouteTrade.fromRoutes<ETHER, Token, TradeType>(
           [
             {
-              amount: CurrencyAmount.fromRawAmount(ETHER.onChain(1), JSBI.BigInt(10000)),
+              amount: CurrencyAmount.fromRawAmount(ETHER.onChain(919), JSBI.BigInt(10000)),
               route: new MixedRouteSDK([pool_weth_0], ETH, token0),
             },
           ],
@@ -197,7 +197,7 @@ describe('MixedRouteTrade', () => {
           MixedRouteTrade.fromRoutes<ETHER, Token, TradeType>(
             [
               {
-                amount: CurrencyAmount.fromRawAmount(ETHER.onChain(1), JSBI.BigInt(10000)),
+                amount: CurrencyAmount.fromRawAmount(ETHER.onChain(919), JSBI.BigInt(10000)),
                 route: new MixedRouteSDK([pool_weth_0], ETH, token0),
               },
             ],
@@ -583,15 +583,15 @@ describe('MixedRouteTrade', () => {
       it('works for ETHER currency input', async () => {
         const result = await MixedRouteTrade.bestTradeExactIn(
           [pool_weth_0, pool_0_1, pool_0_3, pool_1_3],
-          CurrencyAmount.fromRawAmount(ETHER.onChain(1), JSBI.BigInt(100)),
+          CurrencyAmount.fromRawAmount(ETHER.onChain(919), JSBI.BigInt(100)),
           token3
         )
         expect(result).toHaveLength(2)
         expect(result[0].inputAmount.currency).toEqual(ETH)
-        expect(result[0].swaps[0].route.path).toEqual([WETH9[1], token0, token1, token3])
+        expect(result[0].swaps[0].route.path).toEqual([WETH9[919], token0, token1, token3])
         expect(result[0].outputAmount.currency).toEqual(token3)
         expect(result[1].inputAmount.currency).toEqual(ETH)
-        expect(result[1].swaps[0].route.path).toEqual([WETH9[1], token0, token3])
+        expect(result[1].swaps[0].route.path).toEqual([WETH9[919], token0, token3])
         expect(result[1].outputAmount.currency).toEqual(token3)
       })
 
@@ -603,10 +603,10 @@ describe('MixedRouteTrade', () => {
         )
         expect(result).toHaveLength(2)
         expect(result[0].inputAmount.currency).toEqual(token3)
-        expect(result[0].swaps[0].route.path).toEqual([token3, token0, WETH9[1]])
+        expect(result[0].swaps[0].route.path).toEqual([token3, token0, WETH9[919]])
         expect(result[0].outputAmount.currency).toEqual(ETH)
         expect(result[1].inputAmount.currency).toEqual(token3)
-        expect(result[1].swaps[0].route.path).toEqual([token3, token1, token0, WETH9[1]])
+        expect(result[1].swaps[0].route.path).toEqual([token3, token1, token0, WETH9[919]])
         expect(result[1].outputAmount.currency).toEqual(ETH)
       })
     })
@@ -654,11 +654,11 @@ describe('MixedRouteTrade', () => {
         let exactIn: MixedRouteTrade<Token, Token, TradeType.EXACT_INPUT>
         beforeEach(
           async () =>
-            (exactIn = await MixedRouteTrade.fromRoute(
-              new MixedRouteSDK([pool_0_1, pool_1_2], token0, token2),
-              CurrencyAmount.fromRawAmount(token0, 10000),
-              TradeType.EXACT_INPUT
-            ))
+          (exactIn = await MixedRouteTrade.fromRoute(
+            new MixedRouteSDK([pool_0_1, pool_1_2], token0, token2),
+            CurrencyAmount.fromRawAmount(token0, 10000),
+            TradeType.EXACT_INPUT
+          ))
         )
 
         it('throws if less than 0', () => {
@@ -689,7 +689,7 @@ describe('MixedRouteTrade', () => {
     it('can be constructed with ETHER as input', async () => {
       const trade = await MixedRouteTrade.fromRoute(
         new MixedRouteSDK([pair_weth_0], ETH, token0),
-        CurrencyAmount.fromRawAmount(ETHER.onChain(1), JSBI.BigInt(100)),
+        CurrencyAmount.fromRawAmount(ETHER.onChain(919), JSBI.BigInt(100)),
         TradeType.EXACT_INPUT
       )
       expect(trade.inputAmount.currency).toEqual(ETH)
@@ -794,15 +794,15 @@ describe('MixedRouteTrade', () => {
       it('works for ETHER currency input', async () => {
         const result = await MixedRouteTrade.bestTradeExactIn(
           [pair_weth_0, pair_0_1, pair_0_3, pair_1_3],
-          CurrencyAmount.fromRawAmount(ETHER.onChain(1), JSBI.BigInt(100)),
+          CurrencyAmount.fromRawAmount(ETHER.onChain(919), JSBI.BigInt(100)),
           token3
         )
         expect(result).toHaveLength(2)
         expect(result[0].inputAmount.currency).toEqual(ETH)
-        expect(result[0].swaps[0].route.path).toEqual([WETH9[1], token0, token1, token3])
+        expect(result[0].swaps[0].route.path).toEqual([WETH9[919], token0, token1, token3])
         expect(result[0].outputAmount.currency).toEqual(token3)
         expect(result[1].inputAmount.currency).toEqual(ETH)
-        expect(result[1].swaps[0].route.path).toEqual([WETH9[1], token0, token3])
+        expect(result[1].swaps[0].route.path).toEqual([WETH9[919], token0, token3])
         expect(result[1].outputAmount.currency).toEqual(token3)
       })
       it('works for ETHER currency output', async () => {
@@ -813,10 +813,10 @@ describe('MixedRouteTrade', () => {
         )
         expect(result).toHaveLength(2)
         expect(result[0].inputAmount.currency).toEqual(token3)
-        expect(result[0].swaps[0].route.path).toEqual([token3, token0, WETH9[1]])
+        expect(result[0].swaps[0].route.path).toEqual([token3, token0, WETH9[919]])
         expect(result[0].outputAmount.currency).toEqual(ETH)
         expect(result[1].inputAmount.currency).toEqual(token3)
-        expect(result[1].swaps[0].route.path).toEqual([token3, token1, token0, WETH9[1]])
+        expect(result[1].swaps[0].route.path).toEqual([token3, token1, token0, WETH9[919]])
         expect(result[1].outputAmount.currency).toEqual(ETH)
       })
     })
@@ -916,7 +916,7 @@ describe('MixedRouteTrade', () => {
       it('can be constructed with ETHER as input', async () => {
         const trade = await MixedRouteTrade.fromRoute(
           new MixedRouteSDK([pool_weth_0, pair_0_1], ETH, token1),
-          CurrencyAmount.fromRawAmount(ETHER.onChain(1), JSBI.BigInt(10000)),
+          CurrencyAmount.fromRawAmount(ETHER.onChain(919), JSBI.BigInt(10000)),
           TradeType.EXACT_INPUT
         )
         expect(trade.inputAmount.currency).toEqual(ETH)
@@ -947,7 +947,7 @@ describe('MixedRouteTrade', () => {
         const trade = await MixedRouteTrade.fromRoutes<ETHER, Token, TradeType>(
           [
             {
-              amount: CurrencyAmount.fromRawAmount(ETHER.onChain(1), JSBI.BigInt(10000)),
+              amount: CurrencyAmount.fromRawAmount(ETHER.onChain(919), JSBI.BigInt(10000)),
               route: new MixedRouteSDK([pool_weth_0, pair_0_1], ETH, token1),
             },
           ],
@@ -1278,15 +1278,15 @@ describe('MixedRouteTrade', () => {
       it('works for ETHER currency input', async () => {
         const result = await MixedRouteTrade.bestTradeExactIn(
           [pool_weth_0, pair_0_1, pool_0_3, pair_1_3],
-          CurrencyAmount.fromRawAmount(ETHER.onChain(1), JSBI.BigInt(100)),
+          CurrencyAmount.fromRawAmount(ETHER.onChain(919), JSBI.BigInt(100)),
           token3
         )
         expect(result).toHaveLength(2)
         expect(result[0].inputAmount.currency).toEqual(ETH)
-        expect(result[0].swaps[0].route.path).toEqual([WETH9[1], token0, token1, token3])
+        expect(result[0].swaps[0].route.path).toEqual([WETH9[919], token0, token1, token3])
         expect(result[0].outputAmount.currency).toEqual(token3)
         expect(result[1].inputAmount.currency).toEqual(ETH)
-        expect(result[1].swaps[0].route.path).toEqual([WETH9[1], token0, token3])
+        expect(result[1].swaps[0].route.path).toEqual([WETH9[919], token0, token3])
         expect(result[1].outputAmount.currency).toEqual(token3)
       })
 
@@ -1298,10 +1298,10 @@ describe('MixedRouteTrade', () => {
         )
         expect(result).toHaveLength(2)
         expect(result[0].inputAmount.currency).toEqual(token3)
-        expect(result[0].swaps[0].route.path).toEqual([token3, token0, WETH9[1]])
+        expect(result[0].swaps[0].route.path).toEqual([token3, token0, WETH9[919]])
         expect(result[0].outputAmount.currency).toEqual(ETH)
         expect(result[1].inputAmount.currency).toEqual(token3)
-        expect(result[1].swaps[0].route.path).toEqual([token3, token1, token0, WETH9[1]])
+        expect(result[1].swaps[0].route.path).toEqual([token3, token1, token0, WETH9[919]])
         expect(result[1].outputAmount.currency).toEqual(ETH)
       })
     })
@@ -1353,11 +1353,11 @@ describe('MixedRouteTrade', () => {
         )
         beforeEach(
           async () =>
-            (exactIn = await MixedRouteTrade.fromRoute(
-              new MixedRouteSDK([large_pair_0_1, pool_1_2], token0, token2),
-              CurrencyAmount.fromRawAmount(token0, 10000),
-              TradeType.EXACT_INPUT
-            ))
+          (exactIn = await MixedRouteTrade.fromRoute(
+            new MixedRouteSDK([large_pair_0_1, pool_1_2], token0, token2),
+            CurrencyAmount.fromRawAmount(token0, 10000),
+            TradeType.EXACT_INPUT
+          ))
         )
 
         it('throws if less than 0', () => {

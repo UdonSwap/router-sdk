@@ -29,9 +29,9 @@
     "@ethersproject/abi": "^5.5.0",
     "@ethersproject/bignumber": "^5.7.0",
     "@uniswap/swap-router-contracts": "^1.1.0",
-    "udonswap-core": "^1.1.1",
-    "udonswap-v2-sdk": "^1.1.0",
-    "udonswap-v3": "^1.1.0"
+    "udonswap-core": "1.1.1",
+    "udonswap-v2-sdk": "1.1.1",
+    "udonswap-v3": "1.1.1"
   },
   "devDependencies": {
     "@types/jest": "^24.0.25",

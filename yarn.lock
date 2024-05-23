@@ -6891,7 +6891,7 @@ typescript@^3.7.3:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.10.tgz#70f3910ac7a51ed6bef79da7800690b19bf778b8"
   integrity sha512-w6fIxVE/H1PkLKcCPsFqKE7Kv7QUwhU8qQY2MueZXWx5cPZdwFupLgKK3vntcK98BtNHZtAF4LA/yl2a7k8R6Q==
 
-udonswap-core@^1.1.1:
+udonswap-core@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/udonswap-core/-/udonswap-core-1.1.1.tgz#67ee9997a2734b475e20e556cc6b14097a4719c3"
   integrity sha512-BLg2dRD2e6oE1R+D9kzFLmPLwRzAN2n3f/8zY+25Q/xTzlPt/5g6SWFzl6LkskXJSHtD1aUsyyOcpRCpecXnDw==
@@ -6903,21 +6903,21 @@ udonswap-core@^1.1.1:
     tiny-invariant "^1.1.0"
     toformat "^2.0.0"
 
-udonswap-v2-sdk@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/udonswap-v2-sdk/-/udonswap-v2-sdk-1.1.0.tgz#d7aba125dbe99e30f0a2d4068c6f9c2e55bae07a"
-  integrity sha512-9Bf9NGRjJr6pgrqVzjHml+MX8fKXofr74TednmdeB7Uibiibt0X2HnR9OFmeJsPf6umcUAIwNR5Zli8n2iuM6w==
+udonswap-v2-sdk@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/udonswap-v2-sdk/-/udonswap-v2-sdk-1.1.1.tgz#3a2bce8d517ebd714e499805881b83e58f717173"
+  integrity sha512-rDRFH7dhfWnOKkRkYVQPEaVfKYzwzPUVbJS7OPsp042LDYK64Th1y2t7Sbkj7Xwb3FsAblv+SlyFSxwtdz2hwg==
   dependencies:
     "@ethersproject/address" "^5.0.0"
     "@ethersproject/solidity" "^5.0.0"
     tiny-invariant "^1.1.0"
     tiny-warning "^1.0.3"
-    udonswap-core "^1.1.1"
+    udonswap-core "1.1.1"
 
-udonswap-v3@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/udonswap-v3/-/udonswap-v3-1.1.0.tgz#8dcb782038f049249f74372bb48c6ae64f875f50"
-  integrity sha512-zf8SpYZ+BYMuZqn4giKtmNwku+9jlQfxYH0CGwmJGKqKr9G4Ze0d3rNMFcWZw724uw1NmYGpVN5//nrSZ3yUTQ==
+udonswap-v3@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/udonswap-v3/-/udonswap-v3-1.1.1.tgz#f949d7b4802dbac9f8457478423bad81c67c85d5"
+  integrity sha512-rFy9TWSrnmVx0gNUwJlxmdSF+ElcJo1xuyFUSgo9Zo9lFRFT2i71s/c/73i5TKyTxbsxnNtz660l8zaaEJ1s2A==
   dependencies:
     "@ethersproject/abi" "^5.0.12"
     "@ethersproject/solidity" "^5.0.9"
@@ -6926,7 +6926,7 @@ udonswap-v3@^1.1.0:
     "@uniswap/v3-staker" "1.0.0"
     tiny-invariant "^1.1.0"
     tiny-warning "^1.0.3"
-    udonswap-core "^1.1.1"
+    udonswap-core "1.1.1"
 
 unbox-primitive@^1.0.2:
   version "1.0.2"

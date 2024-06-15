@@ -1,6 +1,6 @@
 {
   "name": "udonswap-router",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "An sdk for routing swaps.",
   "publishConfig": {
     "access": "public"

@@ -1,7 +1,6 @@
 import { Interface } from '@ethersproject/abi'
 import { Currency, CurrencyAmount, Percent, TradeType, validateAndParseAddress, WETH9 } from 'udonswap-core'
 import { abi } from '@uniswap/swap-router-contracts/artifacts/contracts/interfaces/ISwapRouter02.sol/ISwapRouter02.json'
-// import { Trade as V2Trade } from 'darshitswap-v2-sdk'
 import {
   encodeRouteToPath,
   FeeOptions,
@@ -20,7 +19,7 @@ import { ADDRESS_THIS, MSG_SENDER } from './constants'
 import { ApproveAndCall, ApprovalTypes, CondensedAddLiquidityOptions } from './approveAndCall'
 import { Trade } from './entities/trade'
 import { Protocol } from './entities/protocol'
-import { /*MixedRoute, RouteV2,*/ RouteV3 } from './entities/route'
+import { RouteV3 } from './entities/route'
 import { MulticallExtended, Validation } from './multicallExtended'
 import { PaymentsExtended } from './paymentsExtended'
 // import { MixedRouteTrade } from './entities/mixedRoute/trade'
@@ -344,6 +343,7 @@ export abstract class SwapRouter {
         trades.swaps.every(
           (swap) =>
             swap.route.protocol == Protocol.V3 
+          // ||
             // swap.route.protocol == Protocol.V2 ||
             // swap.route.protocol == Protocol.MIXED
         ),
@@ -400,7 +400,7 @@ export abstract class SwapRouter {
 
     const numberOfTrades = trades.reduce(
       (numberOfTrades, trade) =>
-        numberOfTrades + (trade instanceof V3Trade /* || trade instanceof MixedRouteTrade*/ ? trade.swaps.length : 1),
+        numberOfTrades + (trade instanceof V3Trade ? trade.swaps.length : 1),
       0
     )
 
@@ -673,7 +673,7 @@ export abstract class SwapRouter {
       | V3Trade<Currency, Currency, TradeType>
       // | MixedRouteTrade<Currency, Currency, TradeType>
   ): boolean {
-    return /*!(trade instanceof V2Trade) && */trade.priceImpact.greaterThan(REFUND_ETH_PRICE_IMPACT_THRESHOLD)
+    return trade.priceImpact.greaterThan(REFUND_ETH_PRICE_IMPACT_THRESHOLD)
   }
 
   private static getPositionAmounts(

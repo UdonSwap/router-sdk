@@ -1,6 +1,6 @@
 # Udonswap Router SDK
 
-This is the router sdk for routing swaps using Udonswap v2 and Udonswap v3.
+This is the router sdk for routing swaps.
 
 
 ## Running tests

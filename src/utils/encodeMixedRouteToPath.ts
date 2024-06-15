@@ -1,7 +1,7 @@
 import { pack } from '@ethersproject/solidity'
 import { Currency, Token } from 'udonswap-core'
 import { Pool } from 'udonswap-v3'
-// import { Pair } from 'darshitswap-v2-sdk'
+// import { Pair } from 'ghggnbv'
 import { MixedRouteSDK } from '../entities/mixedRoute/route'
 import { V2_FEE_PATH_PLACEHOLDER } from '../constants'
 
@@ -17,7 +17,7 @@ export function encodeMixedRouteToPath(route: MixedRouteSDK<Currency, Currency>)
   const { path, types } = route.pools.reduce(
     (
       { inputToken, path, types }: { inputToken: Token; path: (string | number)[]; types: string[] },
-      pool: Pool, /*| Pair*/
+      pool: Pool,
       index
     ): { inputToken: Token; path: (string | number)[]; types: string[] } => {
       const outputToken: Token = pool.token0.equals(inputToken) ? pool.token1 : pool.token0

@@ -1,5 +1,4 @@
 import { Currency, Token } from 'udonswap-core'
-// import { Pair } from 'darshitswap-v2-sdk'
 import { Pool } from 'udonswap-v3'
 import { MixedRouteSDK } from '../entities/mixedRoute/route'
 
@@ -8,7 +7,7 @@ import { MixedRouteSDK } from '../entities/mixedRoute/route'
  * @param route
  * @returns a nested array of Pools or Pairs in the order of the route
  */
-export const partitionMixedRouteByProtocol = (route: MixedRouteSDK<Currency, Currency>): (Pool /*| Pair*/)[][] => {
+export const partitionMixedRouteByProtocol = (route: MixedRouteSDK<Currency, Currency>): (Pool)[][] => {
   let acc = []
 
   let left = 0
@@ -37,9 +36,9 @@ export const partitionMixedRouteByProtocol = (route: MixedRouteSDK<Currency, Cur
  * @param firstInputToken
  * @returns the output token of the last pool in the array
  */
-export const getOutputOfPools = (pools: (Pool /*| Pair*/)[], firstInputToken: Token): Token => {
+export const getOutputOfPools = (pools: (Pool)[], firstInputToken: Token): Token => {
   const { inputToken: outputToken } = pools.reduce(
-    ({ inputToken }, pool: Pool /*| Pair*/): { inputToken: Token } => {
+    ({ inputToken }, pool: Pool): { inputToken: Token } => {
       if (!pool.involvesToken(inputToken)) throw new Error('PATH')
       const outputToken: Token = pool.token0.equals(inputToken) ? pool.token1 : pool.token0
       return {

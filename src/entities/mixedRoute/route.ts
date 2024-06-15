@@ -2,9 +2,8 @@ import invariant from 'tiny-invariant'
 
 import { Currency, Price, Token } from 'udonswap-core'
 import { Pool } from 'udonswap-v3'
-// import { Pair } from 'darshitswap-v2-sdk'
 
-type TPool = Pool /* | Pair */
+type TPool = Pool
 
 /**
  * Represents a list of pools or pairs through which a swap can occur

@@ -13,6 +13,14 @@ export const partitionMixedRouteByProtocol = (route: MixedRouteSDK<Currency, Cur
   let left = 0
   let right = 0
   while (right < route.pools.length) {
+    if (
+      (route.pools[left] instanceof Pool && route.pools[right] instanceof Pool) ||
+      (route.pools[left] instanceof Pool && route.pools[right] instanceof Pool)
+    ) {
+      acc.push(route.pools.slice(left, right))
+      left = right
+    }
+    // seek forward with right pointer
     right++
     if (right === route.pools.length) {
       /// we reached the end, take the rest

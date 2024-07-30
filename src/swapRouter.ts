@@ -81,15 +81,6 @@ export abstract class SwapRouter {
   private constructor() {}
 
   /**
-   * @notice Generates the calldata for a Swap with a V2 Route.
-   * @param trade The V2Trade to encode.
-   * @param options SwapOptions to use for the trade.
-   * @param routerMustCustody Flag for whether funds should be sent to the router
-   * @param performAggregatedSlippageCheck Flag for whether we want to perform an aggregated slippage check
-   * @returns A string array of calldatas for the trade.
-   */
-
-  /**
    * @notice Generates the calldata for a Swap with a V3 Route.
    * @param trade The V3Trade to encode.
    * @param options SwapOptions to use for the trade.
@@ -172,16 +163,6 @@ export abstract class SwapRouter {
     return calldatas
   }
 
-  /**
-   * @notice Generates the calldata for a MixedRouteSwap. Since single hop routes are not MixedRoutes, we will instead generate
-   *         them via the existing encodeV3Swap and encodeV2Swap methods.
-   * @param trade The MixedRouteTrade to encode.
-   * @param options SwapOptions to use for the trade.
-   * @param routerMustCustody Flag for whether funds should be sent to the router
-   * @param performAggregatedSlippageCheck Flag for whether we want to perform an aggregated slippage check
-   * @returns A string array of calldatas for the trade.
-   */
-
   private static encodeSwaps(
     trades: AnyTradeType,
     options: SwapOptions,
@@ -200,16 +181,11 @@ export abstract class SwapRouter {
     // If dealing with an instance of the aggregated Trade object, unbundle it to individual trade objects.
     if (trades instanceof Trade) {
       invariant(
-        trades.swaps.every(
-          (swap) =>
-            swap.route.protocol == Protocol.V3 
-        ),
+        trades.swaps.every((swap) => swap.route.protocol == Protocol.V3),
         'UNSUPPORTED_PROTOCOL'
       )
 
-      let individualTrades: (
-        | V3Trade<Currency, Currency, TradeType>
-      )[] = []
+      let individualTrades: (V3Trade<Currency, Currency, TradeType>)[] = []
 
       for (const { route, inputAmount, outputAmount } of trades.swaps) {
         if (route.protocol == Protocol.V3) {
@@ -233,8 +209,7 @@ export abstract class SwapRouter {
     }
 
     const numberOfTrades = trades.reduce(
-      (numberOfTrades, trade) =>
-        numberOfTrades + (trade instanceof V3Trade ? trade.swaps.length : 1),
+      (numberOfTrades, trade) => numberOfTrades + (trade instanceof V3Trade ? trade.swaps.length : 1),
       0
     )
 

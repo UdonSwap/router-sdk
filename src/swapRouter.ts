@@ -181,11 +181,16 @@ export abstract class SwapRouter {
     // If dealing with an instance of the aggregated Trade object, unbundle it to individual trade objects.
     if (trades instanceof Trade) {
       invariant(
-        trades.swaps.every((swap) => swap.route.protocol == Protocol.V3),
+        trades.swaps.every(
+          (swap) =>
+            swap.route.protocol == Protocol.V3
+        ),
         'UNSUPPORTED_PROTOCOL'
       )
 
-      let individualTrades: (V3Trade<Currency, Currency, TradeType>)[] = []
+      let individualTrades: (
+        | V3Trade<Currency, Currency, TradeType>
+      )[] = []
 
       for (const { route, inputAmount, outputAmount } of trades.swaps) {
         if (route.protocol == Protocol.V3) {
@@ -209,7 +214,8 @@ export abstract class SwapRouter {
     }
 
     const numberOfTrades = trades.reduce(
-      (numberOfTrades, trade) => numberOfTrades + (trade instanceof V3Trade ? trade.swaps.length : 1),
+      (numberOfTrades, trade) =>
+        numberOfTrades + (trade instanceof V3Trade ? trade.swaps.length : 1),
       0
     )
 

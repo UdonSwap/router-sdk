@@ -4469,10 +4469,10 @@ kleur@^3.0.3:
   resolved "https://registry.npmjs.org/kleur/-/kleur-3.0.3.tgz"
   integrity sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==
 
-lampros-core@1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/lampros-core/-/lampros-core-1.4.0.tgz#a5e1d47f493e5ae6bcb6f7dabea3a928fc6f1ebe"
-  integrity sha512-cAFoIc4KgK1cbjrFF7ae8zK2T0HwjmLRhCVnOHF5Vd/tjUjNZuWDOKeH/EEzJto1Vd/nGNRQZhuwhOk31qLfmA==
+lampros-core@1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/lampros-core/-/lampros-core-1.4.2.tgz#ca1aea1c66f047ca5e46b352e7aed1411cf63d73"
+  integrity sha512-xVQUKzTtjk4HDzunzcKmB5HvWIxTdPI1qh4TOE4Ux+veCloxlsSyZNCl0GEuZ5LPDhWD3gBme1wevUjF4MuhlA==
   dependencies:
     "@ethersproject/address" "^5.0.2"
     big.js "^5.2.2"
@@ -4481,17 +4481,17 @@ lampros-core@1.4.0:
     tiny-invariant "^1.1.0"
     toformat "^2.0.0"
 
-lampros-v3@1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/lampros-v3/-/lampros-v3-1.4.0.tgz#fea86700843eaa36313601497627c2e9d56a9f19"
-  integrity sha512-QF7Sg7sgNO5l7IOg9PBcGGhNvTS3/Nq8X5g3kwd0PeFHKHuK79nre6FowYyUn3kXwNoa6I+wfOQEGS40higCqA==
+lampros-v3@1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/lampros-v3/-/lampros-v3-1.4.2.tgz#5ff2f77c504febd13da9d34c9729e9abcc09f240"
+  integrity sha512-tDlrEFRokZkEv6MHMZWlhJjTKor2yz3d+a0qONEUupOwMAgWzTqN6Iut4RyPLC8LIEOECY2RffwBcxwpEw98jw==
   dependencies:
     "@ethersproject/abi" "^5.0.12"
     "@ethersproject/solidity" "^5.0.9"
     "@uniswap/swap-router-contracts" "^1.2.1"
     "@uniswap/v3-periphery" "^1.1.1"
     "@uniswap/v3-staker" "1.0.0"
-    lampros-core "1.4.0"
+    lampros-core "1.4.2"
     tiny-invariant "^1.1.0"
     tiny-warning "^1.0.3"
 
